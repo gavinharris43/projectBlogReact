@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Post from './post';
-//import './App.css';
+import config from './config';
 
 class ts extends Component {
   constructor() {
@@ -13,7 +13,7 @@ class ts extends Component {
 componentDidMount() {  
 axios({
   method:'get',
-  url:'http://localhost:8080/movies1/api/blog/getTSBlogs',
+  url: config.api+'/movies1/api/blog/getTSBlogs',
   responseType:'json'
 })
 .then(response => {
@@ -35,7 +35,6 @@ axios({
 
     return (
       <div><p>Taylor Swift</p>
-      
       <div >{posts}</div>
       </div>
 

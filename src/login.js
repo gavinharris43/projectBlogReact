@@ -1,35 +1,77 @@
 import React, { Component } from 'react';
 import './App.css';
-import App from './App.js';
-import Session from './Session';
+
+import axios from 'axios';
+import config from './config';
 
 
-class login extends Component {
+class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      username: null,
+      password: null
+
+    }
+  }
+
+
+  checkUser = () => {
+
+    axios.post(config.api + '/movies1/api/blog/login', {
+      username: this.state.username,
+      password: this.state.password
+    })
+      .then((response) => {
+        if (response.data[0] == this.state.username) {
+          sessionStorage.setItem("loggedUser", response.data[0]);
+
+
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  handleSubmit = (e) => {
+
+    this.checkUser();
+
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
+
   render() {
     return (
-       
-       <div>
-         
-  <form class="form-signin">
-  
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""/>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""/>
-    <div class="checkbox mb-3">
-   
-    <label class="custom-select-sm">
-      <input type="checkbox" value="remember-me" class="small.small"/> Remember me
+
+      <div>
+
+        
+
+          <h1 class="h3 mb-3 font-weight-normal">{ sessionStorage.getItem("loggedUser") === null ? "Please sign in": "Logged In"}</h1>
+          <label for="username" class="sr-only">Username</label>
+          <input onChange={this.handleChange} type="username" id="username" class="form-control" placeholder="Username" required="" autofocus="" />
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input onChange={this.handleChange} type="password" id="password" class="form-control" placeholder="Password" required="" />
+          <div class="checkbox mb-3">
+
+            <label class="custom-select-sm">
+              <input type="checkbox" value="remember-me" class="small.small" /> Remember me
     </label>
-  </div>
-  <button class="btn btn-lg btn-primary btn-block" onClick={Session.login} >Sign in</button>
- 
-  </form>
-       
-  </div>
+          </div>
+
+          <button class="btn btn-lg btn-primary btn-block" onClick={this.handleSubmit} >Sign in</button>
+
+     
+
+      </div>
     );
   }
 }
 
-export default login;
+export default Login;

@@ -5,30 +5,22 @@ import config from './config';
 
 
 
-class addblog extends Component {
+class editblog extends Component {
     constructor() {
         super();
         this.state = {
             title: null,
-            username: (sessionStorage.getItem("loggedUser")),
+            username: sessionStorage.getItem("loggedUser"),
             content: null,
             date: null,
-            category: null
+            category: null,
+            id: null
         }
     }
 
-    //  getAllblogs = () => {
-    //     axios.get(config.api + "/movies1/api/blog/getAllBlogs")
-    //         .then(response => {
-    //             console.log(" Posts  :", response.data);
-    //         })
+    editblog = () => {
+        axios.put(config.api + '/movies1/api/blog/editBlog/' + this.state.id, {
 
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
-    addblog = () => {
-        axios.post(config.api + '/movies1/api/blog/createBlog', {
             title: this.state.title,
             username: this.state.username,
             content: this.state.content,
@@ -45,8 +37,8 @@ class addblog extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.addblog();
-        // this.getAllblogs();
+        this.editblog();
+
     }
 
     handleChange = (e) => {
@@ -60,9 +52,9 @@ class addblog extends Component {
         return (
 
             <div>
-                <h2>New Blog</h2>
+                <h2>Edit Blog</h2>
                 <form class="form-group" onSubmit={this.handleSubmit} className="form_size " action="">
-
+                    ID: <input onChange={this.handleChange} className="form-control" placeholder="Title" id="id" required />
                     Title: <input onChange={this.handleChange} className="form-control" placeholder="Title" id="title" required />
                     Author: <input onChange={this.handleChange} className="form-control" value={this.state.username} id="author" readonly required />
                     Content: <textarea onChange={this.handleChange} className="form-control" maxLength="3000" placeholder="Content" required id="content" rows="3" />
@@ -83,4 +75,4 @@ class addblog extends Component {
     }
 }
 
-export default addblog;
+export default editblog;

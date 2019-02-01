@@ -15,7 +15,7 @@ class Post extends Component {
               </tr>
               <tr>
               <td>Author</td>
-              <td id="author">{ this.props.data.author }</td>
+              <td id="author">{ this.props.data.username }</td>
               </tr>
               <tr>
               <td>Content</td>
