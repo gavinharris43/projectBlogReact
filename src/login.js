@@ -25,6 +25,7 @@ class Login extends Component {
       .then((response) => {
         if (response.data[0] == this.state.username) {
           sessionStorage.setItem("loggedUser", response.data[0]);
+          window.location.reload();
 
 
         }

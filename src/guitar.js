@@ -36,7 +36,7 @@ class guitar extends Component {
       }
     }
     return (
-      <div> <p>Guitar</p>
+      <div> <h1>Guitar</h1>
         <div >{posts}</div>
       </div>
     );

@@ -21,10 +21,18 @@ class Post extends Component {
               <td>Content</td>
               <td id="content">{ this.props.data.content }</td>
               </tr>
-              {<tr>
+              <tr>
+              <td>Category</td>
+              <td id="category">{this.props.data.category}</td>
+              </tr> 
+              <tr>
               <td>Date</td>
               <td id="date">{this.props.data.date}</td>
-              </tr> }
+              </tr> 
+              <tr>
+              <td>ID</td>
+              <td id="id">{this.props.data.id}</td>
+              </tr> 
            </tbody>
               </table>
         

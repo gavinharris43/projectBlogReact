@@ -34,7 +34,7 @@ axios({
     }
 
     return (
-      <div><p>Taylor Swift</p>
+      <div><h1>Taylor Swift</h1>
       <div >{posts}</div>
       </div>
 
