@@ -19,7 +19,7 @@ class editblog extends Component {
     }
 
     editblog = () => {
-        axios.put(config.api + '/movies1/api/blog/editBlog/' + this.state.id, {
+        axios.put(config.api + '/movies1/api/blog/editBlog/' + this.state.id+"/"+this.state.username, {
 
             title: this.state.title,
             username: this.state.username,
