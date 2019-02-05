@@ -8,6 +8,7 @@ import addBlog from './addblog';
 import register from './register';
 import editBlog from './editblog';
 import deleteBlog from './delblog';
+import Account from './account';
 import {
   BrowserRouter as Router,
   Route, Link
@@ -33,7 +34,7 @@ class App extends Component {
               {(sessionStorage.getItem("loggedUser")) === null ? "" : <li><Link to="/editblog">Edit Blog</Link></li>}
               {(sessionStorage.getItem("loggedUser")) === null ? "" : <li><Link to="/delblog">Delete Blog</Link></li>}
               {(sessionStorage.getItem("loggedUser")) === null ? <li><Link to="/login">Login</Link></li> : <li><Link to="/login" onClick={() => { sessionStorage.removeItem("loggedUser"); window.location.reload() }}>Logout</Link></li>}
-
+              {(sessionStorage.getItem("loggedUser")) === null ? "" : <li><Link to="/account">Account</Link></li>}
             </ul>
 
           </div>
@@ -49,6 +50,7 @@ class App extends Component {
               <Route path="/addblog" component={addBlog} />
               <Route path="/editblog" component={editBlog} />
               <Route path="/delblog" component={deleteBlog} />
+              <Route path="/account" component={Account} />
               <Route path="/reg" component={register} />
             </div>
 
