@@ -14,12 +14,14 @@ class editblog extends Component {
             content: null,
             date: null,
             category: null,
-            id: null
+            id: null,
+            message: null
         }
     }
 
     editblog = () => {
-        axios.put(config.api + '/movies1/api/blog/editBlog/' + this.state.id+"/"+this.state.username, {
+        let actuallyThis = this;
+        axios.put(config.api + '/movies1/api/blog/editBlog/' + this.state.id + "/" + this.state.username, {
 
             title: this.state.title,
             username: this.state.username,
@@ -28,10 +30,12 @@ class editblog extends Component {
             category: this.state.category
         })
             .then(function (response) {
-                console.log(response.data);
+                actuallyThis.setState({
+                    message: response.data.message
+
+                })
             })
             .catch(function (error) {
-                console.log(error);
             });
     }
 
@@ -54,6 +58,7 @@ class editblog extends Component {
             <div>
                 <h2>Edit Blog</h2>
                 <form class="form-group" onSubmit={this.handleSubmit} className="form_size " action="">
+                    <p>{this.state.message}</p>
                     ID: <input onChange={this.handleChange} className="form-control" placeholder="Title" id="id" required />
                     Title: <input onChange={this.handleChange} className="form-control" placeholder="Title" id="title" required />
                     Author: <input onChange={this.handleChange} className="form-control" value={this.state.username} id="author" readonly required />

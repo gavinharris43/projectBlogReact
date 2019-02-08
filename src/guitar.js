@@ -19,7 +19,6 @@ class guitar extends Component {
       responseType: 'json'
     })
       .then(response => {
-        console.log(response.data)
         if (response.data != undefined) {
           this.setState({
             blog: response.data,

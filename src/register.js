@@ -12,24 +12,29 @@ class reg extends Component {
             firstName: null,
             lastName: null,
             password: null,
-            userLevel: "0"
+            userLevel: "0",
+            message: null
         }
+
     }
 
 
     addUser = () => {
+        let actuallyThis = this;
         axios.post(config.api + '/movies1/api/blog/addAccount', {
             username: this.state.username,
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             password: this.state.password,
-            userLevel: this.state.userLevel
+            userLevel: this.state.userLevel,
         })
             .then(function (response) {
-                console.log(response.data);
+                actuallyThis.setState({
+                    message: response.data.message
+
+                })
             })
             .catch(function (error) {
-                console.log(error);
             });
     }
 
@@ -54,6 +59,7 @@ class reg extends Component {
                 <form class="form-signin" onSubmit={this.handleSubmit} action="">
 
                     <h1 class="h3 mb-3 font-weight-normal">Register*</h1>
+                    <p>{this.state.message} </p>
                     <label for="username" class="sr-only">Username*</label>
                     <input onChange={this.handleChange} type="username" id="username" class="form-control" placeholder="Username" required="true" autofocus="" />
                     <label for="fName" class="sr-only">First Name*</label>

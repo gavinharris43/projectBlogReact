@@ -29,7 +29,6 @@ class App extends Component {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/ts" >T.S.</Link></li>
               <li><Link to="/guitar">Guitar</Link></li>
-              {console.log("checky wecky")}
               {(sessionStorage.getItem("loggedUser")) === null ? <li><Link to="/reg">Register</Link></li> : <li><Link to="/addblog">New Blog</Link></li>}
               {(sessionStorage.getItem("loggedUser")) === null ? "" : <li><Link to="/editblog">Edit Blog</Link></li>}
               {(sessionStorage.getItem("loggedUser")) === null ? "" : <li><Link to="/delblog">Delete Blog</Link></li>}

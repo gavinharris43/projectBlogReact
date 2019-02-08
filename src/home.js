@@ -3,7 +3,6 @@ import axios from 'axios';
 import Post from './post';
 import config from './config';
 
-
 class home extends Component {
   constructor() {
     super();
@@ -18,7 +17,6 @@ class home extends Component {
       responseType: 'json'
     })
       .then(response => {
-        console.log(response.data)
         if (response.data != undefined) {
           this.setState({
             blog: response.data,
