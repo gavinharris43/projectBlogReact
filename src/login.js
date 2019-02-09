@@ -33,9 +33,7 @@ class Login extends Component {
   }
 
   handleSubmit = (e) => {
-
     this.checkUser();
-
   }
 
   handleChange = (e) => {
